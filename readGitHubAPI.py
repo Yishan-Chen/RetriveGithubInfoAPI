@@ -9,12 +9,12 @@ def get_github_followers(username, depth=3, cuzDepth=1, num_of_followers=5):
 			res = []
 			for i in range(num_of_followers):
 				if i > len(data)-1: break
-				res.append(data[i]["id"])
+				res.append(str(data[i]["id"]))
 		else:
 			res = {}
 			for i in range(num_of_followers):
 				if i > len(data)-1: break
-				res[data[i]["id"]] = get_github_followers(data[i]["login"], depth, cuzDepth+1)
+				res[str(data[i]["id"])] = get_github_followers(data[i]["login"], depth, cuzDepth+1)
 		return res
 	else:
 		print ("%i:%s, fail to retrieve %s's followers" % (response.status_code, response.reason, username))
