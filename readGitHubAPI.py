@@ -1,6 +1,6 @@
 import requests
 
-def get_github_followers(username, depth, cuzDepth=1, num_of_followers=5):
+def get_github_followers(username, depth=3, cuzDepth=1, num_of_followers=5):
 	url = "https://api.github.com/users/%s/followers" % (username)
 	response = requests.get(url)
 	if response.status_code == 200:
@@ -20,7 +20,7 @@ def get_github_followers(username, depth, cuzDepth=1, num_of_followers=5):
 		print ("%i:%s, fail to retrieve %s's followers" % (response.status_code, response.reason, username))
 		return None
 
-def get_github_repos_and_stargazer(username, depth, cuzDepth=1, num_of_repos=3):
+def get_github_repos_and_stargazer(username, depth=3, cuzDepth=1, num_of_repos=3):
 	url = "https://api.github.com/users/%s/repos" % (username)
 	response = requests.get(url)
 	if response.status_code == 200:
@@ -60,8 +60,7 @@ def get_github_stargazer(username, repoName,num_of_stargazer=3):
 		print ("%i:%s, fail to retrieve %s's repo %s's stargazer" % (response.status_code, response.reason, username, repoName))
 		return None
 
-username = "benoitsteiner"
-print(get_github_stargazer(username, "libxsmm"))
-print(get_github_followers(username,3))
-print(get_github_repos_and_stargazer(username, 3))
+username = "tensorflow"
+print(get_github_followers(username))
+print(get_github_repos_and_stargazer(username))
 
